@@ -1,9 +1,7 @@
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.withType
 
 /**
  * Convention plugin for publishing Garnish modules.
@@ -22,14 +20,10 @@ class GarnishPublishingPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("com.vanniktech.maven.publish")
 
-        afterEvaluate {
-            extensions.configure<PublishingExtension> {
-                publications.withType<MavenPublication>().configureEach {
-                    groupId = findProperty("GROUP")?.toString() ?: groupId
-                    version = findProperty("VERSION_NAME")?.toString() ?: version
-                    artifactId = "garnish-${project.name}"
-                }
-            }
+        extensions.configure<MavenPublishBaseExtension> {
+            coordinates(
+                artifactId = "garnish-${project.name}",
+            )
         }
     }
 }

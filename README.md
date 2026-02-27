@@ -7,7 +7,7 @@
 Small, focused Kotlin Multiplatform primitives for common mobile system tasks.
 
 [![Check](https://github.com/szijpeter/garnish/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/szijpeter/garnish/actions/workflows/check.yml)
-[![Maven Central (pending)](https://img.shields.io/badge/Maven%20Central-pending-lightgrey)](./docs/MAVEN_CENTRAL.md)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-0.1.0-2ea44f)](./docs/MAVEN_CENTRAL.md)
 
 ## Description
 
@@ -21,7 +21,7 @@ Garnish is a modular KMP suite for system-level features that should be easy to 
 
 ### Consume From Maven Central (Primary)
 
-After first release, add dependencies from Maven Central:
+Add dependencies from Maven Central:
 
 ```kotlin
 repositories {

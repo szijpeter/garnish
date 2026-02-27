@@ -6,7 +6,7 @@ on:
       release_mode:
         description: "Publish mode"
         required: true
-        default: "publish-only"
+        default: "publish-and-release"
         type: choice
         options:
           - publish-only
@@ -40,6 +40,21 @@ jobs:
           test -n "$MAVEN_CENTRAL_PASSWORD" || (echo "Missing secret: MAVEN_CENTRAL_PASSWORD" && exit 1)
           test -n "$SIGNING_KEY" || (echo "Missing secret: SIGNING_KEY" && exit 1)
           test -n "$SIGNING_KEY_PASSWORD" || (echo "Missing secret: SIGNING_KEY_PASSWORD" && exit 1)
+
+      - name: Guard release mode against SNAPSHOT versions
+        run: |
+          RESOLVED_VERSION="${{ inputs.version_name }}"
+          if [ -z "$RESOLVED_VERSION" ]; then
+            RESOLVED_VERSION="$(sed -n 's/^VERSION_NAME=//p' gradle.properties | head -n 1)"
+          fi
+
+          test -n "$RESOLVED_VERSION" || (echo "Unable to resolve VERSION_NAME" && exit 1)
+          echo "Resolved VERSION_NAME=$RESOLVED_VERSION"
+
+          if [ "${{ inputs.release_mode }}" = "publish-and-release" ] && [[ "$RESOLVED_VERSION" == *SNAPSHOT* ]]; then
+            echo "Refusing publish-and-release for SNAPSHOT version: $RESOLVED_VERSION"
+            exit 1
+          fi
 
       - name: Publish to Maven Central
         env:

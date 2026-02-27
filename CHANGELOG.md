@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-## [0.1.0-SNAPSHOT] — Unreleased
+## [Unreleased]
+
+## [0.1.0] — 2026-02-27
 
 ### Added
 - **Build infrastructure**: AGP 9.0.1, Kotlin 2.3.10, Compose Multiplatform 1.10.1, Gradle 9.1.0

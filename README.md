@@ -44,6 +44,7 @@ dependencies {
 ```
 
 `alias(libs.plugins.garnishPublishing)` is only for this repo's maintainers when publishing Garnish modules. Consumers do not need it.
+Maintainer publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md).
 
 ## Modules
 

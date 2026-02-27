@@ -18,6 +18,7 @@ detekt = "1.23.8"
 dokka = "2.1.0"
 playReview = "2.0.2"
 kotlinxCoroutines = "1.10.2"
+vanniktechMavenPublish = "0.36.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -50,6 +51,7 @@ dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", versi
 bcv-gradlePlugin = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version = "0.17.0" }
 play-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "playReview" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
+vanniktech-mavenPublish-gradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "vanniktechMavenPublish" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

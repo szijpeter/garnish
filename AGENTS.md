@@ -14,7 +14,8 @@
 ## Local Workflow
 - Fast confidence pass: `./gradlew check --no-daemon`
 - API compatibility: `./gradlew apiCheck --no-daemon`
-- Publish local artifacts: `./gradlew publishToMavenLocal --no-daemon`
+- Publish preflight locally: `./gradlew publishToMavenLocal --no-daemon`
+- Publish to Central Portal: `./gradlew publishToMavenCentral --no-daemon`
 - iOS klib smoke build: `./gradlew :composeApp:iosSimulatorArm64MainKlibrary --no-daemon`
 
 ## Quality Rules
@@ -69,3 +70,4 @@
 - Run `check`, `apiCheck`, and a local sample launch.
 - Verify docs in module `README.md` files match actual behavior.
 - Confirm Maven coordinates, version, and POM metadata are correct.
+- Follow `docs/MAVEN_CENTRAL.md` for namespace, credentials, signing, and release steps.

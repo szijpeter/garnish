@@ -11,6 +11,7 @@ dependencies {
     implementation(libs.detekt.gradlePlugin)
     implementation(libs.dokka.gradlePlugin)
     implementation(libs.bcv.gradlePlugin)
+    implementation(libs.vanniktech.mavenPublish.gradlePlugin)
 }
 
 tasks {

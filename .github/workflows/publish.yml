@@ -3,31 +3,58 @@ name: Publish
 on:
   workflow_dispatch:
     inputs:
-      target:
-        description: 'Publish target'
+      release_mode:
+        description: "Publish mode"
         required: true
-        default: 'mavenLocal'
+        default: "publish-only"
         type: choice
         options:
-          - mavenLocal
+          - publish-only
+          - publish-and-release
+      version_name:
+        description: "Optional VERSION_NAME override (e.g. 0.1.0)"
+        required: false
+        type: string
 
 jobs:
   publish:
     runs-on: macos-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '21'
+          distribution: "zulu"
+          java-version: "21"
       - uses: gradle/actions/setup-gradle@v4
-      - name: Publish to mavenLocal (packaged artifact)
+
+      - name: Validate Maven Central secrets
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
-          ./gradlew publishToMavenLocal --no-daemon
-          mkdir -p build/published-m2
-          cp -R "$HOME/.m2/repository/com/garnish" build/published-m2/com-garnish
-      - name: Upload published artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: garnish-m2-repository
-          path: build/published-m2/com-garnish
+          test -n "$MAVEN_CENTRAL_USERNAME" || (echo "Missing secret: MAVEN_CENTRAL_USERNAME" && exit 1)
+          test -n "$MAVEN_CENTRAL_PASSWORD" || (echo "Missing secret: MAVEN_CENTRAL_PASSWORD" && exit 1)
+          test -n "$SIGNING_KEY" || (echo "Missing secret: SIGNING_KEY" && exit 1)
+          test -n "$SIGNING_KEY_PASSWORD" || (echo "Missing secret: SIGNING_KEY_PASSWORD" && exit 1)
+
+      - name: Publish to Maven Central
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          VERSION_ARG=""
+          if [ -n "${{ inputs.version_name }}" ]; then
+            VERSION_ARG="-PVERSION_NAME=${{ inputs.version_name }}"
+          fi
+
+          if [ "${{ inputs.release_mode }}" = "publish-and-release" ]; then
+            ./gradlew publishAndReleaseToMavenCentral --no-daemon $VERSION_ARG
+          else
+            ./gradlew publishToMavenCentral --no-daemon $VERSION_ARG
+          fi

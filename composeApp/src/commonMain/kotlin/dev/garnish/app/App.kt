@@ -49,7 +49,12 @@ private val GarnishColors = lightColorScheme(
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
-    val garnishMarkBytes by produceState<ByteArray?>(initialValue = null) {
+    val platformImageBytes = rememberPlatformGarnishImageBytes()
+    val garnishMarkBytes by produceState<ByteArray?>(initialValue = platformImageBytes, key1 = platformImageBytes) {
+        if (platformImageBytes != null) {
+            value = platformImageBytes
+            return@produceState
+        }
         value = runCatching { Res.readBytes("files/garnish-mark-256.png") }.getOrNull()
     }
 

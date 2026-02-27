@@ -1,4 +1,4 @@
-import com.garnish.buildlogic.libs
+import dev.garnish.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

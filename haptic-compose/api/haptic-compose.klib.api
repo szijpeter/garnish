@@ -6,5 +6,5 @@
 // - Show declarations: true
 
 // Library unique name: <Garnish:haptic-compose>
-final fun (androidx.compose.ui/Modifier).com.garnish.haptic.compose/hapticFeedback(com.garnish.haptic/HapticType, kotlin/Boolean = ...): androidx.compose.ui/Modifier // com.garnish.haptic.compose/hapticFeedback|hapticFeedback@androidx.compose.ui.Modifier(com.garnish.haptic.HapticType;kotlin.Boolean){}[0]
-final fun com.garnish.haptic.compose/rememberHapticEngine(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.haptic/HapticEngine // com.garnish.haptic.compose/rememberHapticEngine|rememberHapticEngine(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun (androidx.compose.ui/Modifier).dev.garnish.haptic.compose/hapticFeedback(dev.garnish.haptic/HapticType, kotlin/Boolean = ...): androidx.compose.ui/Modifier // dev.garnish.haptic.compose/hapticFeedback|hapticFeedback@androidx.compose.ui.Modifier(dev.garnish.haptic.HapticType;kotlin.Boolean){}[0]
+final fun dev.garnish.haptic.compose/rememberHapticEngine(androidx.compose.runtime/Composer?, kotlin/Int): dev.garnish.haptic/HapticEngine // dev.garnish.haptic.compose/rememberHapticEngine|rememberHapticEngine(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

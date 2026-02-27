@@ -38,8 +38,8 @@ repositories {
 }
 
 dependencies {
-    commonMainImplementation("io.github.szijpeter:share:0.1.0-SNAPSHOT")
-    commonMainImplementation("io.github.szijpeter:haptic:0.1.0-SNAPSHOT")
+    commonMainImplementation("io.github.szijpeter:garnish-share:0.1.0-SNAPSHOT")
+    commonMainImplementation("io.github.szijpeter:garnish-haptic:0.1.0-SNAPSHOT")
 }
 ```
 
@@ -50,18 +50,18 @@ Maintainer publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md).
 
 | Module | Description | Module Docs | Sample |
 |---|---|---|---|
-| `share` | Share text, URL, image, file | [share](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `share-compose` | `rememberShareKit()` for Compose | [share (Compose section)](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `haptic` | Cross-platform haptic feedback | [haptic](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `haptic-compose` | `rememberHapticEngine()` and modifier support | [haptic (Compose section)](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `torch` | Flashlight control | [torch](./torch/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `torch-compose` | `rememberTorch()` for Compose | [torch-compose](./torch-compose/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `screen` | Brightness, keep-screen-on, orientation | [screen](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `screen-compose` | `KeepScreenOn()` and `LockOrientation()` | [screen (Compose section)](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `badge` | App icon badge count | [badge](./badge/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `clipboard` | Rich clipboard (text, HTML, URI, image) | [clipboard](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `clipboard-compose` | `rememberRichClipboard()` for Compose | [clipboard (Compose section)](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
-| `review` | In-app review request API | [review](./review/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/com/garnish/app/App.kt) |
+| `share` | Share text, URL, image, file | [share](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `share-compose` | `rememberShareKit()` for Compose | [share (Compose section)](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `haptic` | Cross-platform haptic feedback | [haptic](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `haptic-compose` | `rememberHapticEngine()` and modifier support | [haptic (Compose section)](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `torch` | Flashlight control | [torch](./torch/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `torch-compose` | `rememberTorch()` for Compose | [torch-compose](./torch-compose/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `screen` | Brightness, keep-screen-on, orientation | [screen](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `screen-compose` | `KeepScreenOn()` and `LockOrientation()` | [screen (Compose section)](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `badge` | App icon badge count | [badge](./badge/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `clipboard` | Rich clipboard (text, HTML, URI, image) | [clipboard](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `clipboard-compose` | `rememberRichClipboard()` for Compose | [clipboard (Compose section)](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| `review` | In-app review request API | [review](./review/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
 
 ## Sample Snippets
 

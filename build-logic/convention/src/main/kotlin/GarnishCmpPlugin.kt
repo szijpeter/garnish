@@ -1,6 +1,6 @@
-import com.garnish.buildlogic.configureAndroidLibrary
-import com.garnish.buildlogic.defaultNamespace
-import com.garnish.buildlogic.libs
+import dev.garnish.buildlogic.configureAndroidLibrary
+import dev.garnish.buildlogic.defaultNamespace
+import dev.garnish.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

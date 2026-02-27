@@ -6,4 +6,4 @@
 // - Show declarations: true
 
 // Library unique name: <Garnish:torch-compose>
-final fun com.garnish.torch.compose/rememberTorch(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.torch/Torch // com.garnish.torch.compose/rememberTorch|rememberTorch(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun dev.garnish.torch.compose/rememberTorch(androidx.compose.runtime/Composer?, kotlin/Int): dev.garnish.torch/Torch // dev.garnish.torch.compose/rememberTorch|rememberTorch(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

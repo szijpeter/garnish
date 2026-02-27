@@ -69,6 +69,14 @@ Update version:
 - Set `VERSION_NAME` in `gradle.properties` (or pass `-PVERSION_NAME=...` in workflow input).
 - Use non-`SNAPSHOT` for stable releases.
 
+Artifact coordinates follow `garnish-<module>` naming.
+
+Examples:
+
+- `io.github.szijpeter:garnish-share`
+- `io.github.szijpeter:garnish-review`
+- `io.github.szijpeter:garnish-clipboard-compose`
+
 ## 5. Publish from GitHub Actions
 
 Use workflow: `.github/workflows/publish.yml`

@@ -2,7 +2,7 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.garnish.buildlogic.convention"
+group = "dev.garnish.buildlogic.convention"
 
 dependencies {
     implementation(libs.android.gradlePlugin)

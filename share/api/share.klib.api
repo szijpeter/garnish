@@ -6,23 +6,23 @@
 // - Show declarations: true
 
 // Library unique name: <Garnish:share>
-abstract interface com.garnish.share/ShareKit { // com.garnish.share/ShareKit|null[0]
-    abstract fun shareFile(kotlin/ByteArray, kotlin/String, kotlin/String) // com.garnish.share/ShareKit.shareFile|shareFile(kotlin.ByteArray;kotlin.String;kotlin.String){}[0]
-    abstract fun shareImage(kotlin/ByteArray, kotlin/String = ...) // com.garnish.share/ShareKit.shareImage|shareImage(kotlin.ByteArray;kotlin.String){}[0]
-    abstract fun shareText(kotlin/String, kotlin/String? = ...) // com.garnish.share/ShareKit.shareText|shareText(kotlin.String;kotlin.String?){}[0]
-    abstract fun shareUrl(kotlin/String, kotlin/String? = ...) // com.garnish.share/ShareKit.shareUrl|shareUrl(kotlin.String;kotlin.String?){}[0]
+abstract interface dev.garnish.share/ShareKit { // dev.garnish.share/ShareKit|null[0]
+    abstract fun shareFile(kotlin/ByteArray, kotlin/String, kotlin/String) // dev.garnish.share/ShareKit.shareFile|shareFile(kotlin.ByteArray;kotlin.String;kotlin.String){}[0]
+    abstract fun shareImage(kotlin/ByteArray, kotlin/String = ...) // dev.garnish.share/ShareKit.shareImage|shareImage(kotlin.ByteArray;kotlin.String){}[0]
+    abstract fun shareText(kotlin/String, kotlin/String? = ...) // dev.garnish.share/ShareKit.shareText|shareText(kotlin.String;kotlin.String?){}[0]
+    abstract fun shareUrl(kotlin/String, kotlin/String? = ...) // dev.garnish.share/ShareKit.shareUrl|shareUrl(kotlin.String;kotlin.String?){}[0]
 }
 
-final class com.garnish.share/ShareOperationException : com.garnish.share/ShareException { // com.garnish.share/ShareOperationException|null[0]
-    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.share/ShareOperationException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+final class dev.garnish.share/ShareOperationException : dev.garnish.share/ShareException { // dev.garnish.share/ShareOperationException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // dev.garnish.share/ShareOperationException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
 }
 
-final class com.garnish.share/ShareUnavailableException : com.garnish.share/ShareException { // com.garnish.share/ShareUnavailableException|null[0]
-    constructor <init>(kotlin/String) // com.garnish.share/ShareUnavailableException.<init>|<init>(kotlin.String){}[0]
+final class dev.garnish.share/ShareUnavailableException : dev.garnish.share/ShareException { // dev.garnish.share/ShareUnavailableException|null[0]
+    constructor <init>(kotlin/String) // dev.garnish.share/ShareUnavailableException.<init>|<init>(kotlin.String){}[0]
 }
 
-open class com.garnish.share/ShareException : kotlin/RuntimeException { // com.garnish.share/ShareException|null[0]
-    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.share/ShareException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+open class dev.garnish.share/ShareException : kotlin/RuntimeException { // dev.garnish.share/ShareException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // dev.garnish.share/ShareException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
 }
 
-final fun com.garnish.share/ShareKit(): com.garnish.share/ShareKit // com.garnish.share/ShareKit|ShareKit(){}[0]
+final fun dev.garnish.share/ShareKit(): dev.garnish.share/ShareKit // dev.garnish.share/ShareKit|ShareKit(){}[0]

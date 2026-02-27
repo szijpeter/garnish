@@ -6,4 +6,4 @@
 // - Show declarations: true
 
 // Library unique name: <Garnish:share-compose>
-final fun com.garnish.share.compose/rememberShareKit(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.share/ShareKit // com.garnish.share.compose/rememberShareKit|rememberShareKit(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun dev.garnish.share.compose/rememberShareKit(androidx.compose.runtime/Composer?, kotlin/Int): dev.garnish.share/ShareKit // dev.garnish.share.compose/rememberShareKit|rememberShareKit(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

@@ -1,4 +1,4 @@
-import com.garnish.buildlogic.libs
+import dev.garnish.buildlogic.libs
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.gradle.api.Plugin

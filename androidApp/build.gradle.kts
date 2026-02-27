@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.garnish.app"
+    namespace = "dev.garnish.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.garnish.app"
+        applicationId = "dev.garnish.app"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1

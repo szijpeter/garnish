@@ -35,6 +35,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
   - Switched `garnish.publishing` to `com.vanniktech.maven.publish` for Central Portal compatibility
   - Added Maven Central workflow modes: `publish-only` and `publish-and-release`
   - Added maintainer publishing guide at `docs/MAVEN_CENTRAL.md`
+  - Standardized artifact IDs to `garnish-<module>` (for example `garnish-share`, `garnish-review`)
+- **Namespace alignment**:
+  - Migrated Kotlin/Android package namespace from `com.garnish` to `dev.garnish`
+  - Updated Android app namespaces and iOS bundle identifier base to `dev.garnish`
 
 ### Fixed
 - Android launcher resources:

@@ -2,6 +2,19 @@
 
 Compose Multiplatform wrappers for `:torch`.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-torch-compose:<version>")
+}
+```
+
 ## API
 
 ```kotlin

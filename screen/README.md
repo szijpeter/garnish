@@ -2,6 +2,21 @@
 
 Cross-platform screen controller for Kotlin Multiplatform — brightness, keep-screen-on, and orientation lock.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-screen:<version>")
+    // Optional Compose helper:
+    commonMainImplementation("io.github.szijpeter:garnish-screen-compose:<version>")
+}
+```
+
 ## API
 
 ```kotlin

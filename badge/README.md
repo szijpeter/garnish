@@ -2,6 +2,19 @@
 
 Cross-platform app icon badge count for Kotlin Multiplatform.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-badge:<version>")
+}
+```
+
 ## API
 
 ```kotlin

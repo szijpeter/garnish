@@ -2,6 +2,21 @@
 
 Cross-platform share sheet for Kotlin Multiplatform.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-share:<version>")
+    // Optional Compose helper:
+    commonMainImplementation("io.github.szijpeter:garnish-share-compose:<version>")
+}
+```
+
 ## API
 
 ```kotlin

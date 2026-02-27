@@ -26,12 +26,26 @@ After first release, add dependencies from Maven Central:
 ```kotlin
 repositories {
     google()
-    mavenCentral()
+    mavenCentral() // Garnish artifacts are published here
 }
 
 dependencies {
     commonMainImplementation("io.github.szijpeter:garnish-share:<version>")
-    commonMainImplementation("io.github.szijpeter:garnish-haptic:<version>")
+    commonMainImplementation("io.github.szijpeter:garnish-share-compose:<version>") // Compose helper module
+    commonMainImplementation("io.github.szijpeter:garnish-review:<version>")
+    // Pick only the modules your app needs.
+}
+```
+
+### Tiny Example
+
+```kotlin
+@Composable
+fun ShareExample() {
+    val shareKit = rememberShareKit()
+    Button(onClick = { shareKit.shareText("Don't panic.") }) {
+        Text("Share")
+    }
 }
 ```
 

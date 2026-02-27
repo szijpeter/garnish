@@ -2,6 +2,21 @@
 
 Cross-platform haptic feedback for Kotlin Multiplatform.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-haptic:<version>")
+    // Optional Compose helper:
+    commonMainImplementation("io.github.szijpeter:garnish-haptic-compose:<version>")
+}
+```
+
 ## API
 
 ```kotlin

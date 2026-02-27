@@ -2,6 +2,19 @@
 
 Cross-platform in-app review for Kotlin Multiplatform.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-review:<version>")
+}
+```
+
 ## API
 
 ```kotlin

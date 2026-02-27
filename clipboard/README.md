@@ -2,6 +2,21 @@
 
 Cross-platform rich clipboard for Kotlin Multiplatform — text, HTML, URI, and image support.
 
+## Setup
+
+```kotlin
+repositories {
+    google()
+    mavenCentral() // Garnish modules are published here
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-clipboard:<version>")
+    // Optional Compose helper:
+    commonMainImplementation("io.github.szijpeter:garnish-clipboard-compose:<version>")
+}
+```
+
 ## API
 
 ```kotlin

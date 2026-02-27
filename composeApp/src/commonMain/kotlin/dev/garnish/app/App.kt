@@ -426,7 +426,14 @@ private fun ClipboardDemo(garnishMarkBytes: ByteArray?) {
             singleLine = true,
         )
         Button(
-            onClick = { clipboard.copy(ClipContent.Html(htmlInput, plainText = "fallback")) },
+            onClick = {
+                clipboard.copy(
+                    ClipContent.Html(
+                        htmlInput,
+                        plainText = htmlInput.toClipboardFallbackText(),
+                    )
+                )
+            },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
         ) { Text("copy(Html)") }
@@ -502,6 +509,22 @@ private fun ClipboardDemo(garnishMarkBytes: ByteArray?) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
+}
+
+private val HtmlTagRegex = Regex("<[^>]*>")
+
+private fun String.toClipboardFallbackText(): String {
+    val noTags = replace(HtmlTagRegex, " ")
+    return noTags
+        .replace("&nbsp;", " ")
+        .replace("&amp;", "&")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&quot;", "\"")
+        .replace("&#39;", "'")
+        .trim()
+        .replace(Regex("\\s+"), " ")
+        .ifBlank { "Clipboard HTML" }
 }
 
 @Composable

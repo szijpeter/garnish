@@ -87,6 +87,7 @@ internal class AndroidShareKit(private val context: Context) : ShareKit {
             queryShareTargetsLegacy(intent)
         }
 
+    // Required for API < 33: the non-deprecated ResolveInfoFlags overload is only available on Tiramisu+.
     @Suppress("DEPRECATION")
     private fun queryShareTargetsLegacy(intent: Intent) =
         context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)

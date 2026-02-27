@@ -8,7 +8,7 @@ This project publishes with [`com.vanniktech.maven.publish`](https://vanniktech.
    - https://central.sonatype.com/
 2. Claim a namespace you can verify.
 3. Ensure `GROUP` in [`gradle.properties`](/Users/szipe/lvc/dev/projects/garnish/gradle.properties) matches that approved namespace.
-   - Current value is `io.github.szijpeter.garnish`.
+   - Current value is `io.github.szijpeter`.
    - If your approved namespace differs, change `GROUP` before release.
 4. Generate Central Portal user token (username + password).
 5. Generate/choose a GPG key and export the ASCII-armored private key.

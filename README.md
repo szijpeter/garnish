@@ -38,8 +38,8 @@ repositories {
 }
 
 dependencies {
-    commonMainImplementation("io.github.szijpeter.garnish:share:0.1.0-SNAPSHOT")
-    commonMainImplementation("io.github.szijpeter.garnish:haptic:0.1.0-SNAPSHOT")
+    commonMainImplementation("io.github.szijpeter:share:0.1.0-SNAPSHOT")
+    commonMainImplementation("io.github.szijpeter:haptic:0.1.0-SNAPSHOT")
 }
 ```
 

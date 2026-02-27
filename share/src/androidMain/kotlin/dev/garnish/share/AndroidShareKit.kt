@@ -77,7 +77,6 @@ internal class AndroidShareKit(private val context: Context) : ShareKit {
         }
     }
 
-    @Suppress("DEPRECATION")
     private fun queryShareTargets(intent: Intent) =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.packageManager.queryIntentActivities(
@@ -85,8 +84,12 @@ internal class AndroidShareKit(private val context: Context) : ShareKit {
                 PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY.toLong()),
             )
         } else {
-            context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+            queryShareTargetsLegacy(intent)
         }
+
+    @Suppress("DEPRECATION")
+    private fun queryShareTargetsLegacy(intent: Intent) =
+        context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
     private fun writeTempFile(bytes: ByteArray, name: String, extension: String): File {
         val dir = File(context.cacheDir, "garnish_share").also { it.mkdirs() }

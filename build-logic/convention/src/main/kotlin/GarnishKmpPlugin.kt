@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
  */
 class GarnishKmpPlugin : Plugin<Project> {
 
+    @OptIn(kotlinx.validation.ExperimentalBCVApi::class)
     override fun apply(target: Project) = with(target) {
         pluginManager.apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
         pluginManager.apply(libs.findPlugin("androidKmpLibrary").get().get().pluginId)
@@ -30,12 +31,8 @@ class GarnishKmpPlugin : Plugin<Project> {
 
         // Configure BCV for KMP
         extensions.configure<kotlinx.validation.ApiValidationExtension> {
-            @Suppress("OPT_IN_USAGE")
             klib.enabled = true
         }
-
-        // No explicit configuration needed for default 0.17.0 KMP support
-        // but it might need a trigger.
 
         extensions.configure<KotlinMultiplatformExtension> {
             // Android KMP Library configuration via AGP 9 extension

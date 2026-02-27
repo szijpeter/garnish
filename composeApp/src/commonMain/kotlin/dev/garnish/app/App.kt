@@ -1,7 +1,6 @@
 package dev.garnish.app
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -15,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.garnish.clipboard.ClipContent
@@ -29,8 +27,10 @@ import dev.garnish.screen.compose.LockOrientation
 import dev.garnish.screen.compose.rememberScreenController
 import dev.garnish.share.compose.rememberShareKit
 import garnish.composeapp.generated.resources.Res
+import garnish.composeapp.generated.resources.garnish_mark
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
 private val GarnishColors = lightColorScheme(
     primary = Color(0xFF2F5B3C),
@@ -109,7 +109,7 @@ private fun Header() {
                 .border(1.dp, Color(0xFFD6CCB7), RoundedCornerShape(14.dp)),
             contentAlignment = Alignment.Center,
         ) {
-            GarnishMark(modifier = Modifier.size(34.dp), tint = MaterialTheme.colorScheme.primary)
+            GarnishIcon(modifier = Modifier.size(34.dp))
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -587,7 +587,7 @@ private fun SectionCard(
                         .background(Color(0xFFECE5D5)),
                     contentAlignment = Alignment.Center,
                 ) {
-                    GarnishMark(modifier = Modifier.size(16.dp), tint = MaterialTheme.colorScheme.primary)
+                    GarnishIcon(modifier = Modifier.size(16.dp))
                 }
                 Text(
                     title,
@@ -608,37 +608,10 @@ private fun SectionCard(
 }
 
 @Composable
-private fun GarnishMark(
-    modifier: Modifier,
-    tint: Color,
-) {
-    Canvas(modifier = modifier) {
-        val width = size.width
-        val height = size.height
-
-        val stem = Path().apply {
-            moveTo(width * 0.50f, height * 0.22f)
-            cubicTo(width * 0.45f, height * 0.32f, width * 0.43f, height * 0.42f, width * 0.43f, height * 0.52f)
-            cubicTo(width * 0.43f, height * 0.65f, width * 0.48f, height * 0.74f, width * 0.50f, height * 0.82f)
-            cubicTo(width * 0.52f, height * 0.74f, width * 0.57f, height * 0.65f, width * 0.57f, height * 0.52f)
-            cubicTo(width * 0.57f, height * 0.42f, width * 0.55f, height * 0.32f, width * 0.50f, height * 0.22f)
-            close()
-        }
-        val leftLeaf = Path().apply {
-            moveTo(width * 0.22f, height * 0.44f)
-            cubicTo(width * 0.35f, height * 0.35f, width * 0.48f, height * 0.34f, width * 0.58f, height * 0.43f)
-            cubicTo(width * 0.48f, height * 0.55f, width * 0.34f, height * 0.57f, width * 0.22f, height * 0.44f)
-            close()
-        }
-        val rightLeaf = Path().apply {
-            moveTo(width * 0.78f, height * 0.44f)
-            cubicTo(width * 0.65f, height * 0.35f, width * 0.52f, height * 0.34f, width * 0.42f, height * 0.43f)
-            cubicTo(width * 0.52f, height * 0.55f, width * 0.66f, height * 0.57f, width * 0.78f, height * 0.44f)
-            close()
-        }
-
-        drawPath(path = stem, color = tint)
-        drawPath(path = leftLeaf, color = tint)
-        drawPath(path = rightLeaf, color = tint)
-    }
+private fun GarnishIcon(modifier: Modifier) {
+    Image(
+        painter = painterResource(Res.drawable.garnish_mark),
+        contentDescription = "Garnish mark",
+        modifier = modifier,
+    )
 }

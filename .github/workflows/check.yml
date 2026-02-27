@@ -1,0 +1,58 @@
+name: Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build Android + run tests + API check
+        run: ./gradlew check apiCheck :androidApp:assembleDebug --no-daemon
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-android
+          path: '**/build/reports/tests/'
+
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Run iOS tests
+        run: |
+          ./gradlew \
+            :torch:iosSimulatorArm64Test \
+            :share:iosSimulatorArm64Test \
+            :haptic:iosSimulatorArm64Test \
+            :screen:iosSimulatorArm64Test \
+            :badge:iosSimulatorArm64Test \
+            :clipboard:iosSimulatorArm64Test \
+            :review:iosSimulatorArm64Test \
+            :composeApp:iosSimulatorArm64Test \
+            --no-daemon
+      - name: Upload iOS test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-ios
+          path: '**/build/reports/tests/'

@@ -1,0 +1,33 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Publish target'
+        required: true
+        default: 'mavenLocal'
+        type: choice
+        options:
+          - mavenLocal
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Publish to mavenLocal (packaged artifact)
+        run: |
+          ./gradlew publishToMavenLocal --no-daemon
+          mkdir -p build/published-m2
+          cp -R "$HOME/.m2/repository/com/garnish" build/published-m2/com-garnish
+      - name: Upload published artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: garnish-m2-repository
+          path: build/published-m2/com-garnish

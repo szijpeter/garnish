@@ -30,7 +30,7 @@ jobs:
           script: ./gradlew :androidApp:connectedDebugAndroidTest --no-daemon
       - name: Upload connected test reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: android-connected-test-reports
           path: |

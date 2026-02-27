@@ -24,7 +24,7 @@ jobs:
         run: ./gradlew check apiCheck :androidApp:assembleDebug --no-daemon
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results-android
           path: '**/build/reports/tests/'
@@ -52,7 +52,7 @@ jobs:
             --no-daemon
       - name: Upload iOS test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-results-ios
           path: '**/build/reports/tests/'

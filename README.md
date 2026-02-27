@@ -86,6 +86,6 @@ Compose sample UI covering all modules: [composeApp/src/commonMain/kotlin/dev/ga
 
 | Android      | iOS          |
 |--------------|--------------|
-| <video src="https://github.com/user-attachments/assets/125a29d9-7dd6-414a-9cbf-677380ca3e11"/> | <video src="https://github.com/user-attachments/assets/4156c584-0f31-4fba-8264-6a6ced604bbc" height="420"/> |
+| <video src="https://github.com/user-attachments/assets/4156c584-0f31-4fba-8264-6a6ced604bbc" height="420"/> | <video src="https://github.com/user-attachments/assets/125a29d9-7dd6-414a-9cbf-677380ca3e11"/> |
 
 License: Apache-2.0. See [LICENSE](./LICENSE).

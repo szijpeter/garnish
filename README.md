@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-### Tiny Example
+### Example
 
 ```kotlin
 @Composable
@@ -70,19 +70,20 @@ Publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md)
 
 ## Modules
 
-| Module | Description | Docs | Sample |
-|---|---|---|---|
-| `share` | Share text, URL, image, file | [share](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `share-compose` | `rememberShareKit()` for Compose | [share (Compose section)](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `haptic` | Cross-platform haptic feedback | [haptic](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `haptic-compose` | `rememberHapticEngine()` and modifier support | [haptic (Compose section)](./haptic/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `torch` | Flashlight control | [torch](./torch/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `torch-compose` | `rememberTorch()` for Compose | [torch-compose](./torch-compose/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `screen` | Brightness, keep-screen-on, orientation | [screen](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `screen-compose` | `KeepScreenOn()` and `LockOrientation()` | [screen (Compose section)](./screen/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `badge` | App icon badge count | [badge](./badge/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `clipboard` | Rich clipboard (text, HTML, URI, image) | [clipboard](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `clipboard-compose` | `rememberRichClipboard()` for Compose | [clipboard (Compose section)](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-| `review` | In-app review request API | [review](./review/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
+| Module(s) | Description |
+|---|---|
+| [`share`](./share/README.md) + `share-compose` | Share text, URL, image, file and Compose `rememberShareKit()` helper |
+| [`haptic`](./haptic/README.md) + `haptic-compose` | Cross-platform haptic feedback and Compose engine/modifier helpers |
+| [`torch`](./torch/README.md) + [`torch-compose`](./torch-compose/README.md) | Flashlight control and Compose `rememberTorch()` helper |
+| [`screen`](./screen/README.md) + `screen-compose` | Brightness, keep-screen-on, orientation and Compose lifecycle helpers |
+| [`badge`](./badge/README.md) | App icon badge count |
+| [`clipboard`](./clipboard/README.md) + `clipboard-compose` | Rich clipboard and Compose `rememberRichClipboard()` helper |
+| [`review`](./review/README.md) | In-app review request API |
+
+## Sample App
+
+- Compose sample UI covering all modules: [composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt)
+- Android host app: [androidApp](./androidApp)
+- iOS host app: [iosApp](./iosApp)
 
 License: Apache-2.0. See [LICENSE](./LICENSE).

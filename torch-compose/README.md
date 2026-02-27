@@ -7,7 +7,7 @@ Compose Multiplatform wrappers for `:torch`.
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

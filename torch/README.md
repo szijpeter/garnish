@@ -7,7 +7,7 @@ Cross-platform flashlight control for Kotlin Multiplatform. No camera preview re
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

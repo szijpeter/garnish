@@ -7,7 +7,7 @@ Cross-platform screen controller for Kotlin Multiplatform — brightness, keep-s
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

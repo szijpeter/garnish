@@ -7,7 +7,7 @@ Cross-platform rich clipboard for Kotlin Multiplatform — text, HTML, URI, and 
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

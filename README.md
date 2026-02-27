@@ -26,7 +26,7 @@ After first release, add dependencies from Maven Central:
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish artifacts are published here
+    mavenCentral()
 }
 
 dependencies {

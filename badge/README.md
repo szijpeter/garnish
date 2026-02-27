@@ -7,7 +7,7 @@ Cross-platform app icon badge count for Kotlin Multiplatform.
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

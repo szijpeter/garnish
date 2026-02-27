@@ -7,7 +7,7 @@ Cross-platform share sheet for Kotlin Multiplatform.
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

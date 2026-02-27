@@ -7,7 +7,7 @@ Cross-platform in-app review for Kotlin Multiplatform.
 ```kotlin
 repositories {
     google()
-    mavenCentral() // Garnish modules are published here
+    mavenCentral()
 }
 
 dependencies {

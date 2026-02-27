@@ -7,8 +7,6 @@
 Small, focused Kotlin Multiplatform primitives for common mobile system tasks.
 
 [![Check](https://github.com/szijpeter/garnish/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/szijpeter/garnish/actions/workflows/check.yml)
-[![Android Instrumented](https://github.com/szijpeter/garnish/actions/workflows/android-instrumented.yml/badge.svg?branch=main)](https://github.com/szijpeter/garnish/actions/workflows/android-instrumented.yml)
-[![License](https://img.shields.io/github/license/szijpeter/garnish)](./LICENSE)
 [![Maven Central (pending)](https://img.shields.io/badge/Maven%20Central-pending-lightgrey)](./docs/MAVEN_CENTRAL.md)
 
 ## Description

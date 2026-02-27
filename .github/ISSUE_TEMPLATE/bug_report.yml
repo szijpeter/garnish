@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a defect in a Garnish module
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill out the details below.
+  - type: input
+    id: module
+    attributes:
+      label: Module
+      description: Which module is affected? (e.g. share, review, torch)
+      placeholder: share
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Garnish version
+      placeholder: 0.1.0-SNAPSHOT
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Android
+        - iOS
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include exact steps and minimal sample code if possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / stacktrace
+      render: text

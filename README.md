@@ -74,7 +74,7 @@ Publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md)
 |---|---|
 | [`share`](./share/README.md) + `share-compose` | Share text, URL, image, file and Compose `rememberShareKit()` helper |
 | [`haptic`](./haptic/README.md) + `haptic-compose` | Cross-platform haptic feedback and Compose engine/modifier helpers |
-| [`torch`](./torch/README.md) + [`torch-compose`](./torch-compose/README.md) | Flashlight control and Compose `rememberTorch()` helper |
+| [`torch`](./torch/README.md) + `torch-compose` | Flashlight control and Compose `rememberTorch()` helper |
 | [`screen`](./screen/README.md) + `screen-compose` | Brightness, keep-screen-on, orientation and Compose lifecycle helpers |
 | [`badge`](./badge/README.md) | App icon badge count |
 | [`clipboard`](./clipboard/README.md) + `clipboard-compose` | Rich clipboard and Compose `rememberRichClipboard()` helper |

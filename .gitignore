@@ -1,12 +1,17 @@
 *.iml
 .kotlin
 .gradle
+.gradle-local/
 **/build/
 xcuserdata
 !src/**/build/
 local.properties
 .idea
+.vscode/
+.fleet/
 .DS_Store
+**/.DS_Store
+Thumbs.db
 captures
 .externalNativeBuild
 .cxx
@@ -16,4 +21,17 @@ captures
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+iosApp/Pods/
+iosApp/.symlinks/
 node_modules/
+
+# Local secrets and transient files
+.env
+.env.*
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+*.orig
+*.swp
+*~

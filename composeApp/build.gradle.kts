@@ -8,8 +8,9 @@ plugins {
 kotlin {
     androidLibrary {
         namespace = "dev.garnish.composeapp"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
-        minSdk = libs.versions.android.minSdk.get().toInt()
+        compileSdk = libs.versions.androidCompileSdk.get().toInt()
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        androidResources.enable = true
     }
 
     listOf(

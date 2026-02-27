@@ -16,7 +16,7 @@ import org.gradle.kotlin.dsl.withType
 class GarnishDetektPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
-        pluginManager.apply(libs.findPlugin("detekt").get().get().pluginId)
+        pluginManager.apply("io.gitlab.arturbosch.detekt")
 
         extensions.configure<DetektExtension> {
             buildUponDefaultConfig = true

@@ -24,7 +24,7 @@ class GarnishKmpPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply(libs.findPlugin("kotlinMultiplatform").get().get().pluginId)
         pluginManager.apply(libs.findPlugin("androidKmpLibrary").get().get().pluginId)
-        pluginManager.apply(libs.findPlugin("binaryCompatibilityValidator").get().get().pluginId)
+        pluginManager.apply("org.jetbrains.kotlinx.binary-compatibility-validator")
         pluginManager.apply("garnish.detekt")
         pluginManager.apply("garnish.dokka")
 
@@ -41,8 +41,8 @@ class GarnishKmpPlugin : Plugin<Project> {
             // Android KMP Library configuration via AGP 9 extension
             configureAndroidLibrary(
                 namespace = defaultNamespace(),
-                compileSdk = libs.findVersion("android-compileSdk").get().requiredVersion.toInt(),
-                minSdk = libs.findVersion("android-minSdk").get().requiredVersion.toInt(),
+                compileSdk = libs.findVersion("androidCompileSdk").get().requiredVersion.toInt(),
+                minSdk = libs.findVersion("androidMinSdk").get().requiredVersion.toInt(),
                 enableAndroidResources = false,
             )
 

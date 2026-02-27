@@ -10,6 +10,6 @@ import org.gradle.api.Project
 class GarnishDokkaPlugin : Plugin<Project> {
 
     override fun apply(target: Project) = with(target) {
-        pluginManager.apply(libs.findPlugin("dokka").get().get().pluginId)
+        pluginManager.apply("org.jetbrains.dokka")
     }
 }

@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import dev.garnish.composeapp.R
 import java.io.ByteArrayOutputStream
 
 @Composable
@@ -11,14 +12,10 @@ actual fun rememberPlatformGarnishImageBytes(): ByteArray? {
     val context = LocalContext.current
     return remember(context) {
         runCatching {
-            val resourceId = context.resources.getIdentifier(
-                "garnish_sample_icon",
-                "drawable",
-                context.packageName,
+            val bitmap = BitmapFactory.decodeResource(
+                context.resources,
+                R.drawable.garnish_sample_icon,
             )
-            if (resourceId == 0) return@runCatching null
-
-            val bitmap = BitmapFactory.decodeResource(context.resources, resourceId)
                 ?: return@runCatching null
             ByteArrayOutputStream().use { out ->
                 bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, out)

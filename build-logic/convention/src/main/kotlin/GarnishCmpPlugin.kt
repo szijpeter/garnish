@@ -30,8 +30,8 @@ class GarnishCmpPlugin : Plugin<Project> {
             // Enable Android resources for Compose modules
             configureAndroidLibrary(
                 namespace = defaultNamespace(),
-                compileSdk = libs.findVersion("android-compileSdk").get().requiredVersion.toInt(),
-                minSdk = libs.findVersion("android-minSdk").get().requiredVersion.toInt(),
+                compileSdk = libs.findVersion("androidCompileSdk").get().requiredVersion.toInt(),
+                minSdk = libs.findVersion("androidMinSdk").get().requiredVersion.toInt(),
                 enableAndroidResources = true,
             )
 

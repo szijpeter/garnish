@@ -86,4 +86,14 @@ Publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md)
 - Android host app: [androidApp](./androidApp)
 - iOS host app: [iosApp](./iosApp)
 
+## Feature Demo Videos
+
+| Android | iOS |
+|---|---|
+| <video src="./assets/media/videos/android/garnish-share-image-android.mp4" controls muted playsinline height="420"></video> | <video src="./assets/media/videos/ios/garnish-share-image-ios.mp4" controls muted playsinline height="420"></video> |
+
+Direct links:
+- [Android shareImage (MP4)](./assets/media/videos/android/garnish-share-image-android.mp4)
+- [iOS shareImage (MP4)](./assets/media/videos/ios/garnish-share-image-ios.mp4)
+
 License: Apache-2.0. See [LICENSE](./LICENSE).

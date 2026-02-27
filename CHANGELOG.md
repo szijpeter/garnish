@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Removed
+- Outdated docs artifacts: `docs/ECOSYSTEM_AUDIT_2026-02-26.md` and legacy `docs/assets/social-preview.png`
+
 ## [0.1.0] — 2026-02-27
 
 ### Added
@@ -21,7 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - **Sample app** with interactive demos for Share, Haptic, and Clipboard
 - **CI**: GitHub Actions workflows for check (android + ios) and publish
 - **Brand assets**: canonical `assets/brand/garnish-mark.svg` and `assets/brand/garnish-mark-1024.png`
-- **Launch docs**: `docs/LAUNCH_KIT.md` and social preview asset `docs/assets/social-preview.png`
+- **Launch docs**: `docs/LAUNCH_KIT.md` and social preview asset
 - **Dependency governance**: Renovate configuration at `.github/renovate.json`
 
 ### Changed

@@ -5,6 +5,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.garnish.review.InAppReview
 import dev.garnish.review.ReviewResult
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,14 +17,23 @@ class ReviewIntegrationTest {
     @Test
     fun requestReviewReturnsKnownResultWithoutThrowing() {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            var review: InAppReview? = null
             scenario.onActivity { activity ->
-                val result = runBlocking { InAppReview(activity).requestReview() }
-                assertTrue(
-                    result == ReviewResult.Requested ||
-                        result == ReviewResult.NotAvailable ||
-                        result == ReviewResult.Error,
-                )
+                review = InAppReview(activity)
             }
+
+            assertNotNull(review)
+            val result = runBlocking {
+                withTimeout(10_000) {
+                    review!!.requestReview()
+                }
+            }
+
+            assertTrue(
+                result == ReviewResult.Requested ||
+                    result == ReviewResult.NotAvailable ||
+                    result == ReviewResult.Error,
+            )
         }
     }
 }

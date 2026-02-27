@@ -26,6 +26,11 @@ internal class AndroidBadgeController(
     private val options: AndroidBadgeOptions,
 ) : BadgeController {
 
+    private val smallIconResId: Int = resolveSmallIconResId(
+        context = context,
+        configuredIconResId = options.smallIconResId,
+    )
+
     private val notificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -44,7 +49,7 @@ internal class AndroidBadgeController(
         }
 
         val notification = NotificationCompat.Builder(context, options.channelId)
-            .setSmallIcon(options.smallIconResId)
+            .setSmallIcon(smallIconResId)
             .setContentTitle(options.notificationTitle)
             .setContentText(options.notificationText(count))
             .setNumber(count)
@@ -84,6 +89,19 @@ internal class AndroidBadgeController(
             }
         }
     }
+
+    @DrawableRes
+    private fun resolveSmallIconResId(
+        context: Context,
+        @DrawableRes configuredIconResId: Int,
+    ): Int {
+        if (configuredIconResId != 0) return configuredIconResId
+
+        val appIconResId = context.applicationInfo.icon
+        if (appIconResId != 0) return appIconResId
+
+        return android.R.drawable.sym_def_app_icon
+    }
 }
 
 /**
@@ -91,12 +109,15 @@ internal class AndroidBadgeController(
  *
  * These values let consuming apps localize and brand the user-visible
  * notification text/channel used to drive launcher badge counts.
+ *
+ * [smallIconResId] defaults to `0`, which resolves automatically to the
+ * host app launcher icon (`ApplicationInfo.icon`) at runtime.
  */
 public data class AndroidBadgeOptions(
     val channelId: String = "garnish_badge",
     val channelName: String = "App Badge",
     val channelDescription: String = "Used to display app icon badge count",
-    @param:DrawableRes val smallIconResId: Int = android.R.drawable.star_on,
+    @param:DrawableRes val smallIconResId: Int = 0,
     val notificationId: Int = 9999,
     val notificationTitle: String = "Notifications",
     val notificationText: (count: Int) -> String = { count -> "You have $count pending items" },

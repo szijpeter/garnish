@@ -34,6 +34,7 @@ interface BadgeController {
 ```kotlin
 // Android (requires POST_NOTIFICATIONS permission on API 33+)
 val badge = BadgeController(context)
+// Default Android icon behavior: uses the host app launcher icon.
 
 // Optional Android customization (recommended for localized/brand-safe text)
 val customBadge = BadgeController(

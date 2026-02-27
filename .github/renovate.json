@@ -36,16 +36,6 @@
       ],
       "groupName": "major dependencies",
       "groupSlug": "major-dependencies"
-    },
-    {
-      "description": "Exception: Compose Material3 is currently published as prerelease for this stack, so keep it updated intentionally.",
-      "matchManagers": [
-        "gradle"
-      ],
-      "matchPackageNames": [
-        "org.jetbrains.compose.material3:material3"
-      ],
-      "ignoreUnstable": false
     }
   ]
 }

@@ -3,7 +3,6 @@ package dev.garnish.badge
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -67,25 +66,23 @@ internal class AndroidBadgeController(
     }
 
     private fun ensureChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val existing = notificationManager.getNotificationChannel(options.channelId)
-            if (existing == null) {
-                val channel = NotificationChannel(
-                    options.channelId,
-                    options.channelName,
-                    NotificationManager.IMPORTANCE_DEFAULT,
-                ).apply {
-                    setShowBadge(true)
-                    description = options.channelDescription
-                    // Suppress sound/vibration — we only want the badge
-                    setSound(null, null)
-                    enableVibration(false)
-                }
-                try {
-                    notificationManager.createNotificationChannel(channel)
-                } catch (e: Exception) {
-                    throw BadgeOperationException("Unable to create badge notification channel.", e)
-                }
+        val existing = notificationManager.getNotificationChannel(options.channelId)
+        if (existing == null) {
+            val channel = NotificationChannel(
+                options.channelId,
+                options.channelName,
+                NotificationManager.IMPORTANCE_DEFAULT,
+            ).apply {
+                setShowBadge(true)
+                description = options.channelDescription
+                // Suppress sound/vibration — we only want the badge
+                setSound(null, null)
+                enableVibration(false)
+            }
+            try {
+                notificationManager.createNotificationChannel(channel)
+            } catch (e: Exception) {
+                throw BadgeOperationException("Unable to create badge notification channel.", e)
             }
         }
     }

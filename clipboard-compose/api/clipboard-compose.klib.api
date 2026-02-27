@@ -1,0 +1,9 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:clipboard-compose>
+final fun com.garnish.clipboard.compose/rememberRichClipboard(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.clipboard/RichClipboard // com.garnish.clipboard.compose/rememberRichClipboard|rememberRichClipboard(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

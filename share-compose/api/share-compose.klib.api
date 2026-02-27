@@ -1,0 +1,9 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:share-compose>
+final fun com.garnish.share.compose/rememberShareKit(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.share/ShareKit // com.garnish.share.compose/rememberShareKit|rememberShareKit(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

@@ -1,0 +1,75 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:clipboard>
+abstract interface com.garnish.clipboard/RichClipboard { // com.garnish.clipboard/RichClipboard|null[0]
+    abstract fun copy(com.garnish.clipboard/ClipContent) // com.garnish.clipboard/RichClipboard.copy|copy(com.garnish.clipboard.ClipContent){}[0]
+    abstract fun hasContent(): kotlin/Boolean // com.garnish.clipboard/RichClipboard.hasContent|hasContent(){}[0]
+    abstract fun paste(): com.garnish.clipboard/ClipContent? // com.garnish.clipboard/RichClipboard.paste|paste(){}[0]
+}
+
+sealed class com.garnish.clipboard/ClipContent { // com.garnish.clipboard/ClipContent|null[0]
+    final class Html : com.garnish.clipboard/ClipContent { // com.garnish.clipboard/ClipContent.Html|null[0]
+        constructor <init>(kotlin/String, kotlin/String = ...) // com.garnish.clipboard/ClipContent.Html.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+        final val html // com.garnish.clipboard/ClipContent.Html.html|{}html[0]
+            final fun <get-html>(): kotlin/String // com.garnish.clipboard/ClipContent.Html.html.<get-html>|<get-html>(){}[0]
+        final val plainText // com.garnish.clipboard/ClipContent.Html.plainText|{}plainText[0]
+            final fun <get-plainText>(): kotlin/String // com.garnish.clipboard/ClipContent.Html.plainText.<get-plainText>|<get-plainText>(){}[0]
+
+        final fun component1(): kotlin/String // com.garnish.clipboard/ClipContent.Html.component1|component1(){}[0]
+        final fun component2(): kotlin/String // com.garnish.clipboard/ClipContent.Html.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String = ...): com.garnish.clipboard/ClipContent.Html // com.garnish.clipboard/ClipContent.Html.copy|copy(kotlin.String;kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.garnish.clipboard/ClipContent.Html.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.garnish.clipboard/ClipContent.Html.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.garnish.clipboard/ClipContent.Html.toString|toString(){}[0]
+    }
+
+    final class Image : com.garnish.clipboard/ClipContent { // com.garnish.clipboard/ClipContent.Image|null[0]
+        constructor <init>(kotlin/ByteArray, kotlin/String = ...) // com.garnish.clipboard/ClipContent.Image.<init>|<init>(kotlin.ByteArray;kotlin.String){}[0]
+
+        final val bytes // com.garnish.clipboard/ClipContent.Image.bytes|{}bytes[0]
+            final fun <get-bytes>(): kotlin/ByteArray // com.garnish.clipboard/ClipContent.Image.bytes.<get-bytes>|<get-bytes>(){}[0]
+        final val mimeType // com.garnish.clipboard/ClipContent.Image.mimeType|{}mimeType[0]
+            final fun <get-mimeType>(): kotlin/String // com.garnish.clipboard/ClipContent.Image.mimeType.<get-mimeType>|<get-mimeType>(){}[0]
+
+        final fun component1(): kotlin/ByteArray // com.garnish.clipboard/ClipContent.Image.component1|component1(){}[0]
+        final fun component2(): kotlin/String // com.garnish.clipboard/ClipContent.Image.component2|component2(){}[0]
+        final fun copy(kotlin/ByteArray = ..., kotlin/String = ...): com.garnish.clipboard/ClipContent.Image // com.garnish.clipboard/ClipContent.Image.copy|copy(kotlin.ByteArray;kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.garnish.clipboard/ClipContent.Image.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.garnish.clipboard/ClipContent.Image.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.garnish.clipboard/ClipContent.Image.toString|toString(){}[0]
+    }
+
+    final class PlainText : com.garnish.clipboard/ClipContent { // com.garnish.clipboard/ClipContent.PlainText|null[0]
+        constructor <init>(kotlin/String) // com.garnish.clipboard/ClipContent.PlainText.<init>|<init>(kotlin.String){}[0]
+
+        final val text // com.garnish.clipboard/ClipContent.PlainText.text|{}text[0]
+            final fun <get-text>(): kotlin/String // com.garnish.clipboard/ClipContent.PlainText.text.<get-text>|<get-text>(){}[0]
+
+        final fun component1(): kotlin/String // com.garnish.clipboard/ClipContent.PlainText.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): com.garnish.clipboard/ClipContent.PlainText // com.garnish.clipboard/ClipContent.PlainText.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.garnish.clipboard/ClipContent.PlainText.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.garnish.clipboard/ClipContent.PlainText.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.garnish.clipboard/ClipContent.PlainText.toString|toString(){}[0]
+    }
+
+    final class Uri : com.garnish.clipboard/ClipContent { // com.garnish.clipboard/ClipContent.Uri|null[0]
+        constructor <init>(kotlin/String) // com.garnish.clipboard/ClipContent.Uri.<init>|<init>(kotlin.String){}[0]
+
+        final val uri // com.garnish.clipboard/ClipContent.Uri.uri|{}uri[0]
+            final fun <get-uri>(): kotlin/String // com.garnish.clipboard/ClipContent.Uri.uri.<get-uri>|<get-uri>(){}[0]
+
+        final fun component1(): kotlin/String // com.garnish.clipboard/ClipContent.Uri.component1|component1(){}[0]
+        final fun copy(kotlin/String = ...): com.garnish.clipboard/ClipContent.Uri // com.garnish.clipboard/ClipContent.Uri.copy|copy(kotlin.String){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.garnish.clipboard/ClipContent.Uri.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.garnish.clipboard/ClipContent.Uri.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.garnish.clipboard/ClipContent.Uri.toString|toString(){}[0]
+    }
+}
+
+final fun com.garnish.clipboard/RichClipboard(): com.garnish.clipboard/RichClipboard // com.garnish.clipboard/RichClipboard|RichClipboard(){}[0]

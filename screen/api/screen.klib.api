@@ -1,0 +1,34 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:screen>
+final enum class com.garnish.screen/ScreenOrientation : kotlin/Enum<com.garnish.screen/ScreenOrientation> { // com.garnish.screen/ScreenOrientation|null[0]
+    enum entry Landscape // com.garnish.screen/ScreenOrientation.Landscape|null[0]
+    enum entry LandscapeReverse // com.garnish.screen/ScreenOrientation.LandscapeReverse|null[0]
+    enum entry Portrait // com.garnish.screen/ScreenOrientation.Portrait|null[0]
+    enum entry PortraitUpsideDown // com.garnish.screen/ScreenOrientation.PortraitUpsideDown|null[0]
+
+    final val entries // com.garnish.screen/ScreenOrientation.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.garnish.screen/ScreenOrientation> // com.garnish.screen/ScreenOrientation.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.garnish.screen/ScreenOrientation // com.garnish.screen/ScreenOrientation.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.garnish.screen/ScreenOrientation> // com.garnish.screen/ScreenOrientation.values|values#static(){}[0]
+}
+
+abstract interface com.garnish.screen/ScreenController { // com.garnish.screen/ScreenController|null[0]
+    abstract var brightness // com.garnish.screen/ScreenController.brightness|{}brightness[0]
+        abstract fun <get-brightness>(): kotlin/Float // com.garnish.screen/ScreenController.brightness.<get-brightness>|<get-brightness>(){}[0]
+        abstract fun <set-brightness>(kotlin/Float) // com.garnish.screen/ScreenController.brightness.<set-brightness>|<set-brightness>(kotlin.Float){}[0]
+    abstract var keepScreenOn // com.garnish.screen/ScreenController.keepScreenOn|{}keepScreenOn[0]
+        abstract fun <get-keepScreenOn>(): kotlin/Boolean // com.garnish.screen/ScreenController.keepScreenOn.<get-keepScreenOn>|<get-keepScreenOn>(){}[0]
+        abstract fun <set-keepScreenOn>(kotlin/Boolean) // com.garnish.screen/ScreenController.keepScreenOn.<set-keepScreenOn>|<set-keepScreenOn>(kotlin.Boolean){}[0]
+
+    abstract fun lockOrientation(com.garnish.screen/ScreenOrientation) // com.garnish.screen/ScreenController.lockOrientation|lockOrientation(com.garnish.screen.ScreenOrientation){}[0]
+    abstract fun unlockOrientation() // com.garnish.screen/ScreenController.unlockOrientation|unlockOrientation(){}[0]
+}
+
+final fun com.garnish.screen/ScreenController(): com.garnish.screen/ScreenController // com.garnish.screen/ScreenController|ScreenController(){}[0]

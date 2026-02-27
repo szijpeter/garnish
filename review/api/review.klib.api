@@ -1,0 +1,25 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:review>
+final enum class com.garnish.review/ReviewResult : kotlin/Enum<com.garnish.review/ReviewResult> { // com.garnish.review/ReviewResult|null[0]
+    enum entry Error // com.garnish.review/ReviewResult.Error|null[0]
+    enum entry NotAvailable // com.garnish.review/ReviewResult.NotAvailable|null[0]
+    enum entry Requested // com.garnish.review/ReviewResult.Requested|null[0]
+
+    final val entries // com.garnish.review/ReviewResult.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.garnish.review/ReviewResult> // com.garnish.review/ReviewResult.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.garnish.review/ReviewResult // com.garnish.review/ReviewResult.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.garnish.review/ReviewResult> // com.garnish.review/ReviewResult.values|values#static(){}[0]
+}
+
+abstract interface com.garnish.review/InAppReview { // com.garnish.review/InAppReview|null[0]
+    abstract suspend fun requestReview(): com.garnish.review/ReviewResult // com.garnish.review/InAppReview.requestReview|requestReview(){}[0]
+}
+
+final fun com.garnish.review/InAppReview(): com.garnish.review/InAppReview // com.garnish.review/InAppReview|InAppReview(){}[0]

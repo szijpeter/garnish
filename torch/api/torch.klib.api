@@ -1,0 +1,32 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:torch>
+abstract interface com.garnish.torch/Torch { // com.garnish.torch/Torch|null[0]
+    abstract val isAvailable // com.garnish.torch/Torch.isAvailable|{}isAvailable[0]
+        abstract fun <get-isAvailable>(): kotlin/Boolean // com.garnish.torch/Torch.isAvailable.<get-isAvailable>|<get-isAvailable>(){}[0]
+
+    abstract var isOn // com.garnish.torch/Torch.isOn|{}isOn[0]
+        abstract fun <get-isOn>(): kotlin/Boolean // com.garnish.torch/Torch.isOn.<get-isOn>|<get-isOn>(){}[0]
+        abstract fun <set-isOn>(kotlin/Boolean) // com.garnish.torch/Torch.isOn.<set-isOn>|<set-isOn>(kotlin.Boolean){}[0]
+
+    open fun toggle() // com.garnish.torch/Torch.toggle|toggle(){}[0]
+}
+
+final class com.garnish.torch/TorchOperationException : com.garnish.torch/TorchException { // com.garnish.torch/TorchOperationException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.torch/TorchOperationException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+}
+
+final class com.garnish.torch/TorchUnavailableException : com.garnish.torch/TorchException { // com.garnish.torch/TorchUnavailableException|null[0]
+    constructor <init>(kotlin/String = ...) // com.garnish.torch/TorchUnavailableException.<init>|<init>(kotlin.String){}[0]
+}
+
+open class com.garnish.torch/TorchException : kotlin/RuntimeException { // com.garnish.torch/TorchException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.torch/TorchException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+}
+
+final fun com.garnish.torch/Torch(): com.garnish.torch/Torch // com.garnish.torch/Torch|Torch(){}[0]

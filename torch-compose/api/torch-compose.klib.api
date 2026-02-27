@@ -1,0 +1,9 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:torch-compose>
+final fun com.garnish.torch.compose/rememberTorch(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.torch/Torch // com.garnish.torch.compose/rememberTorch|rememberTorch(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

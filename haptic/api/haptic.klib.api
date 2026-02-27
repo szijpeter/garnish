@@ -1,0 +1,29 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:haptic>
+final enum class com.garnish.haptic/HapticType : kotlin/Enum<com.garnish.haptic/HapticType> { // com.garnish.haptic/HapticType|null[0]
+    enum entry Click // com.garnish.haptic/HapticType.Click|null[0]
+    enum entry DoubleClick // com.garnish.haptic/HapticType.DoubleClick|null[0]
+    enum entry HeavyClick // com.garnish.haptic/HapticType.HeavyClick|null[0]
+    enum entry Reject // com.garnish.haptic/HapticType.Reject|null[0]
+    enum entry Success // com.garnish.haptic/HapticType.Success|null[0]
+    enum entry Tick // com.garnish.haptic/HapticType.Tick|null[0]
+    enum entry Warning // com.garnish.haptic/HapticType.Warning|null[0]
+
+    final val entries // com.garnish.haptic/HapticType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.garnish.haptic/HapticType> // com.garnish.haptic/HapticType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.garnish.haptic/HapticType // com.garnish.haptic/HapticType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.garnish.haptic/HapticType> // com.garnish.haptic/HapticType.values|values#static(){}[0]
+}
+
+abstract interface com.garnish.haptic/HapticEngine { // com.garnish.haptic/HapticEngine|null[0]
+    abstract fun perform(com.garnish.haptic/HapticType) // com.garnish.haptic/HapticEngine.perform|perform(com.garnish.haptic.HapticType){}[0]
+}
+
+final fun com.garnish.haptic/HapticEngine(): com.garnish.haptic/HapticEngine // com.garnish.haptic/HapticEngine|HapticEngine(){}[0]

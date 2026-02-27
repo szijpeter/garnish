@@ -1,0 +1,26 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:badge>
+abstract interface com.garnish.badge/BadgeController { // com.garnish.badge/BadgeController|null[0]
+    abstract fun setBadgeCount(kotlin/Int) // com.garnish.badge/BadgeController.setBadgeCount|setBadgeCount(kotlin.Int){}[0]
+    open fun clearBadge() // com.garnish.badge/BadgeController.clearBadge|clearBadge(){}[0]
+}
+
+final class com.garnish.badge/BadgeOperationException : com.garnish.badge/BadgeException { // com.garnish.badge/BadgeOperationException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.badge/BadgeOperationException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+}
+
+final class com.garnish.badge/BadgeUnavailableException : com.garnish.badge/BadgeException { // com.garnish.badge/BadgeUnavailableException|null[0]
+    constructor <init>(kotlin/String) // com.garnish.badge/BadgeUnavailableException.<init>|<init>(kotlin.String){}[0]
+}
+
+open class com.garnish.badge/BadgeException : kotlin/RuntimeException { // com.garnish.badge/BadgeException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.garnish.badge/BadgeException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+}
+
+final fun com.garnish.badge/BadgeController(): com.garnish.badge/BadgeController // com.garnish.badge/BadgeController|BadgeController(){}[0]

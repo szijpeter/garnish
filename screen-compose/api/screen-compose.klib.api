@@ -1,0 +1,11 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:screen-compose>
+final fun com.garnish.screen.compose/KeepScreenOn(androidx.compose.runtime/Composer?, kotlin/Int) // com.garnish.screen.compose/KeepScreenOn|KeepScreenOn(androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun com.garnish.screen.compose/LockOrientation(com.garnish.screen/ScreenOrientation, androidx.compose.runtime/Composer?, kotlin/Int) // com.garnish.screen.compose/LockOrientation|LockOrientation(com.garnish.screen.ScreenOrientation;androidx.compose.runtime.Composer?;kotlin.Int){}[0]
+final fun com.garnish.screen.compose/rememberScreenController(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.screen/ScreenController // com.garnish.screen.compose/rememberScreenController|rememberScreenController(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

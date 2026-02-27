@@ -1,0 +1,10 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <Garnish:haptic-compose>
+final fun (androidx.compose.ui/Modifier).com.garnish.haptic.compose/hapticFeedback(com.garnish.haptic/HapticType, kotlin/Boolean = ...): androidx.compose.ui/Modifier // com.garnish.haptic.compose/hapticFeedback|hapticFeedback@androidx.compose.ui.Modifier(com.garnish.haptic.HapticType;kotlin.Boolean){}[0]
+final fun com.garnish.haptic.compose/rememberHapticEngine(androidx.compose.runtime/Composer?, kotlin/Int): com.garnish.haptic/HapticEngine // com.garnish.haptic.compose/rememberHapticEngine|rememberHapticEngine(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

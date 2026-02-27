@@ -1,6 +1,5 @@
 package dev.garnish.app
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -27,10 +26,8 @@ import dev.garnish.screen.compose.LockOrientation
 import dev.garnish.screen.compose.rememberScreenController
 import dev.garnish.share.compose.rememberShareKit
 import garnish.composeapp.generated.resources.Res
-import garnish.composeapp.generated.resources.garnish_mark
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 private val GarnishColors = lightColorScheme(
     primary = Color(0xFF2F5B3C),
@@ -605,13 +602,4 @@ private fun SectionCard(
             content()
         }
     }
-}
-
-@Composable
-private fun GarnishIcon(modifier: Modifier) {
-    Image(
-        painter = painterResource(Res.drawable.garnish_mark),
-        contentDescription = "Garnish mark",
-        modifier = modifier,
-    )
 }

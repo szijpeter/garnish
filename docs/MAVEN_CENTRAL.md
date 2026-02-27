@@ -1,75 +1,12 @@
 # Maven Central Publishing
 
-This project publishes with [`com.vanniktech.maven.publish`](https://vanniktech.github.io/gradle-maven-publish-plugin/central/), targeting Sonatype Central Portal.
+Garnish publishes with [`com.vanniktech.maven.publish`](https://vanniktech.github.io/gradle-maven-publish-plugin/central/) to Sonatype Central Portal.
 
-## 1. One-time prerequisites
+## Coordinates
 
-1. Create/login to Sonatype Central Portal:
-   - https://central.sonatype.com/
-2. Claim a namespace you can verify.
-3. Ensure `GROUP` in [`gradle.properties`](/Users/szipe/lvc/dev/projects/garnish/gradle.properties) matches that approved namespace.
-   - Current value is `io.github.szijpeter`.
-   - If your approved namespace differs, change `GROUP` before release.
-4. Generate Central Portal user token (username + password).
-5. Generate/choose a GPG key and export the ASCII-armored private key.
-
-## 2. GitHub secrets required
-
-Configure these repository secrets:
-
-- `MAVEN_CENTRAL_USERNAME`
-- `MAVEN_CENTRAL_PASSWORD`
-- `SIGNING_KEY` (ASCII-armored private key)
-- `SIGNING_KEY_PASSWORD`
-
-The workflow maps them to Gradle properties expected by the publish plugin.
-
-### Optional: set secrets via GitHub CLI
-
-```bash
-gh auth login -h github.com
-
-gh secret set MAVEN_CENTRAL_USERNAME -R szijpeter/garnish
-gh secret set MAVEN_CENTRAL_PASSWORD -R szijpeter/garnish
-gh secret set SIGNING_KEY -R szijpeter/garnish
-gh secret set SIGNING_KEY_PASSWORD -R szijpeter/garnish
-```
-
-## 3. GPG signing key (if you don't have one yet)
-
-Create key:
-
-```bash
-gpg --full-generate-key
-```
-
-Export ASCII-armored private key for `SIGNING_KEY`:
-
-```bash
-gpg --armor --export-secret-keys <KEY_ID>
-```
-
-Find key id:
-
-```bash
-gpg --list-secret-keys --keyid-format LONG
-```
-
-## 4. Pre-release checks
-
-Run locally:
-
-```bash
-./gradlew check --no-daemon
-./gradlew apiCheck --no-daemon
-```
-
-Update version:
-
-- Set `VERSION_NAME` in `gradle.properties` (or pass `-PVERSION_NAME=...` in workflow input).
-- Use non-`SNAPSHOT` for stable releases.
-
-Artifact coordinates follow `garnish-<module>` naming.
+- Group: `io.github.szijpeter`
+- Artifact pattern: `garnish-<module>`
+- Package names: `dev.garnish.*`
 
 Examples:
 
@@ -77,35 +14,68 @@ Examples:
 - `io.github.szijpeter:garnish-review`
 - `io.github.szijpeter:garnish-clipboard-compose`
 
-## 5. Publish from GitHub Actions
+## One-Time Setup
 
-Use workflow: `.github/workflows/publish.yml`
+1. Create/login to [Central Portal](https://central.sonatype.com/).
+2. Verify namespace ownership for `io.github.szijpeter`.
+3. Confirm `GROUP=io.github.szijpeter` in [`gradle.properties`](../gradle.properties).
+4. Create Central Portal user token.
+5. Prepare GPG key and ASCII-armored private key export.
 
-Inputs:
+## GitHub Secrets
 
-- `release_mode=publish-only`
-  - uploads to Central and waits for manual release from portal.
-- `release_mode=publish-and-release`
-  - uploads and requests automatic release.
-- `version_name` (optional)
-  - temporary override for `VERSION_NAME`.
+Set repository secrets:
 
-## 6. Local commands (maintainers)
+- `MAVEN_CENTRAL_USERNAME`
+- `MAVEN_CENTRAL_PASSWORD`
+- `SIGNING_KEY` (ASCII-armored private key)
+- `SIGNING_KEY_PASSWORD`
+
+Optional setup with GitHub CLI:
 
 ```bash
-# Publish (manual release flow)
-./gradlew publishToMavenCentral --no-daemon
+gh secret set MAVEN_CENTRAL_USERNAME -R szijpeter/garnish
+gh secret set MAVEN_CENTRAL_PASSWORD -R szijpeter/garnish
+gh secret set SIGNING_KEY -R szijpeter/garnish
+gh secret set SIGNING_KEY_PASSWORD -R szijpeter/garnish
+```
 
-# Publish + auto-release
-./gradlew publishAndReleaseToMavenCentral --no-daemon
+## Release Mode
 
-# Local preflight only
+Current default is manual release from Central Portal.
+
+- Workflow: [`.github/workflows/publish.yml`](../.github/workflows/publish.yml)
+- Default input: `release_mode=publish-only`
+- Optional: `release_mode=publish-and-release`
+
+## First Stable Release Runbook
+
+1. Set non-snapshot version in `gradle.properties` (`VERSION_NAME=x.y.z`).
+2. Run validation locally:
+
+```bash
+./gradlew check apiCheck --no-daemon
+```
+
+3. Trigger GitHub `Publish` workflow with:
+- `release_mode=publish-only`
+- `version_name=x.y.z` (optional override)
+4. Verify uploaded artifacts in Central Portal.
+5. Release from Central Portal UI.
+6. Verify coordinates resolve from Maven Central.
+7. Tag release and update changelog.
+
+## Maintainer Local Testing
+
+`mavenLocal()` is maintainer-only for local iteration, not the primary consumer path.
+
+```bash
 ./gradlew publishToMavenLocal --no-daemon
 ```
 
-## 7. Troubleshooting
+## Troubleshooting
 
-- Namespace rejected: `GROUP` does not match approved namespace in Central Portal.
-- 401/403: invalid token secrets.
-- Signing failures: key format or passphrase mismatch.
-- Missing docs/sources jar: verify module applies `garnish.publishing`.
+- Namespace rejected: `GROUP` and verified namespace mismatch.
+- 401/403: invalid Central token credentials.
+- Signing failures: private key or passphrase mismatch.
+- Missing docs/sources jars: module missing `garnishPublishing` plugin.

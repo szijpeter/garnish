@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Garnish Mark</title>
+  <desc id="desc">A stylized herb sprig icon for Garnish.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f2e9" />
+      <stop offset="100%" stop-color="#ece7d8" />
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f8a5d" />
+      <stop offset="100%" stop-color="#2f5b3c" />
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="220" fill="url(#bg)" />
+
+  <path d="M512 222c-46 98-72 185-72 275 0 128 55 224 72 304 17-80 72-176 72-304 0-90-26-177-72-275z" fill="url(#leaf)" />
+  <path d="M235 420c126-92 252-102 356-10-108 128-251 148-356 10z" fill="url(#leaf)" />
+  <path d="M789 420c-126-92-252-102-356-10 108 128 251 148 356 10z" fill="url(#leaf)" />
+</svg>

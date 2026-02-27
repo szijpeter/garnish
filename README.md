@@ -1,8 +1,15 @@
+<p align="left">
+  <img src="assets/brand/garnish-mark-1024.png" alt="Garnish mark" width="84" />
+</p>
+
 # Garnish
 
 Small, focused Kotlin Multiplatform primitives for common mobile system tasks.
 
 [![Check](https://github.com/szijpeter/garnish/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/szijpeter/garnish/actions/workflows/check.yml)
+[![Android Instrumented](https://github.com/szijpeter/garnish/actions/workflows/android-instrumented.yml/badge.svg?branch=main)](https://github.com/szijpeter/garnish/actions/workflows/android-instrumented.yml)
+[![License](https://img.shields.io/github/license/szijpeter/garnish)](./LICENSE)
+[![Maven Central (pending)](https://img.shields.io/badge/Maven%20Central-pending-lightgrey)](./docs/MAVEN_CENTRAL.md)
 
 ## Description
 
@@ -10,25 +17,34 @@ Garnish is a modular KMP suite for system-level features that should be easy to 
 
 - One feature per module.
 - Explicit APIs with deterministic runtime behavior.
-- Pick only what your app needs.
+- Thin dependencies so apps can pick only what they actually need.
 
 ## Setup
 
-### Build This Repository
+### Consume From Maven Central (Primary)
 
-```bash
-./gradlew check --no-daemon
-./gradlew apiCheck --no-daemon
-./gradlew :composeApp:iosSimulatorArm64MainKlibrary --no-daemon
+After first release, add dependencies from Maven Central:
+
+```kotlin
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    commonMainImplementation("io.github.szijpeter:garnish-share:<version>")
+    commonMainImplementation("io.github.szijpeter:garnish-haptic:<version>")
+}
 ```
 
-### Publish And Consume Locally (Current Flow)
+### Local Development (Maintainers)
 
 ```bash
+./gradlew check apiCheck --no-daemon
 ./gradlew publishToMavenLocal --no-daemon
 ```
 
-In your consumer KMP project:
+In a local consumer project during development:
 
 ```kotlin
 repositories {
@@ -36,19 +52,13 @@ repositories {
     google()
     mavenCentral()
 }
-
-dependencies {
-    commonMainImplementation("io.github.szijpeter:garnish-share:0.1.0-SNAPSHOT")
-    commonMainImplementation("io.github.szijpeter:garnish-haptic:0.1.0-SNAPSHOT")
-}
 ```
 
-`alias(libs.plugins.garnishPublishing)` is only for this repo's maintainers when publishing Garnish modules. Consumers do not need it.
-Maintainer publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md).
+Publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md)
 
 ## Modules
 
-| Module | Description | Module Docs | Sample |
+| Module | Description | Docs | Sample |
 |---|---|---|---|
 | `share` | Share text, URL, image, file | [share](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
 | `share-compose` | `rememberShareKit()` for Compose | [share (Compose section)](./share/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
@@ -62,42 +72,5 @@ Maintainer publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md).
 | `clipboard` | Rich clipboard (text, HTML, URI, image) | [clipboard](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
 | `clipboard-compose` | `rememberRichClipboard()` for Compose | [clipboard (Compose section)](./clipboard/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
 | `review` | In-app review request API | [review](./review/README.md) | [compose sample](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt) |
-
-## Sample Snippets
-
-### Share
-
-```kotlin
-val shareKit = rememberShareKit()
-shareKit.shareText("Hello from Garnish", title = "Share")
-```
-
-### Haptic
-
-```kotlin
-val haptic = rememberHapticEngine()
-haptic.perform(HapticType.Success)
-```
-
-### Torch
-
-```kotlin
-val torch = rememberTorch()
-if (torch.isAvailable) {
-    torch.toggle()
-}
-```
-
-### Review
-
-```kotlin
-// Android
-val review = InAppReview(activity)
-
-// iOS
-val review = InAppReview()
-
-val result = review.requestReview()
-```
 
 License: Apache-2.0. See [LICENSE](./LICENSE).

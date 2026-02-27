@@ -18,6 +18,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - **review**: In-app review (iOS: SKStoreReviewController, Android: Google Play In-App Review API)
 - **Sample app** with interactive demos for Share, Haptic, and Clipboard
 - **CI**: GitHub Actions workflows for check (android + ios) and publish
+- **Brand assets**: canonical `assets/brand/garnish-mark.svg` and `assets/brand/garnish-mark-1024.png`
+- **Launch docs**: `docs/LAUNCH_KIT.md` and social preview asset `docs/assets/social-preview.png`
+- **Dependency governance**: Renovate configuration at `.github/renovate.json`
 
 ### Changed
 - **review**:
@@ -39,6 +42,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - **Namespace alignment**:
   - Migrated Kotlin/Android package namespace from `com.garnish` to `dev.garnish`
   - Updated Android app namespaces and iOS bundle identifier base to `dev.garnish`
+- **Sample app UI**:
+  - Replaced emoji-based section labels with Garnish icon-based presentation
+  - Refreshed to a light editorial visual style
+  - Reused bundled Garnish icon bytes for `shareImage` and clipboard image samples
+  - Updated sample text with subtle Douglas Adams references
+- **README**:
+  - Simplified root documentation to description, setup, module links, and sample links
+  - Added check, Android instrumented, and license badges
+  - Added pending Maven Central status badge and top logo mark
+- **Android/iOS app icons**:
+  - Replaced launcher/app icons with the Garnish brand mark across adaptive, legacy, and iOS assets
+- **Dependency bot migration**:
+  - Removed Dependabot config in favor of Renovate
+  - Enforced pre-release dependency policy with explicit documented exception for Compose Material3
 
 ### Fixed
 - Android launcher resources:

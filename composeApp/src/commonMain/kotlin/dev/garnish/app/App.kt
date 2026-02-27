@@ -1,16 +1,23 @@
 package dev.garnish.app
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
-
 import dev.garnish.clipboard.ClipContent
 import dev.garnish.clipboard.compose.rememberRichClipboard
 import dev.garnish.haptic.HapticType
@@ -21,62 +28,113 @@ import dev.garnish.screen.compose.KeepScreenOn
 import dev.garnish.screen.compose.LockOrientation
 import dev.garnish.screen.compose.rememberScreenController
 import dev.garnish.share.compose.rememberShareKit
+import garnish.composeapp.generated.resources.Res
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
+private val GarnishColors = lightColorScheme(
+    primary = Color(0xFF2F5B3C),
+    onPrimary = Color(0xFFFFFFFF),
+    secondary = Color(0xFF7A5734),
+    onSecondary = Color(0xFFFFFFFF),
+    background = Color(0xFFF5F2E9),
+    onBackground = Color(0xFF231E17),
+    surface = Color(0xFFFFFCF5),
+    onSurface = Color(0xFF231E17),
+    surfaceVariant = Color(0xFFE6DFCF),
+    onSurfaceVariant = Color(0xFF5A5447),
+    error = Color(0xFF9A2D2F),
+)
+
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
-    MaterialTheme(colorScheme = darkColorScheme()) {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background,
-        ) {
-            Column(
+    val garnishMarkBytes by produceState<ByteArray?>(initialValue = null) {
+        value = runCatching { Res.readBytes("files/garnish-mark-256.png") }.getOrNull()
+    }
+
+    MaterialTheme(colorScheme = GarnishColors) {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .safeContentPadding()
-                    .padding(24.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color(0xFFF8F4E8), Color(0xFFEEE6D4)),
+                        )
+                    )
             ) {
-                // Header
-                Text(
-                    "🌿 Garnish",
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(
-                    "KMP System Essentials — All APIs Demo",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .safeContentPadding()
+                        .padding(horizontal = 20.dp, vertical = 18.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
+                ) {
+                    Header()
 
-                HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+                    ShareDemo(garnishMarkBytes)
+                    HapticDemo()
+                    TorchDemo()
+                    ScreenDemo()
+                    BadgeDemo()
+                    ClipboardDemo(garnishMarkBytes)
+                    ReviewDemo()
 
-                ShareDemo()
-                HapticDemo()
-                TorchDemo()
-                ScreenDemo()
-                BadgeDemo()
-                ClipboardDemo()
-                ReviewDemo()
-
-                Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(22.dp))
+                }
             }
         }
     }
 }
 
-// ──────────────────────────────────────────────
-// 1. SHARE — shareText, shareUrl, shareImage, shareFile
-// ──────────────────────────────────────────────
 @Composable
-private fun ShareDemo() {
-    val shareKit = rememberShareKit()
-    var text by remember { mutableStateOf("Hello from Garnish!") }
-    var url by remember { mutableStateOf("https://github.com/szijpeter/garnish") }
+private fun Header() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .clip(RoundedCornerShape(14.dp))
+                .background(Color(0xFFEBE4D2))
+                .border(1.dp, Color(0xFFD6CCB7), RoundedCornerShape(14.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            GarnishMark(modifier = Modifier.size(34.dp), tint = MaterialTheme.colorScheme.primary)
+        }
 
-    SectionCard("📤 Share", "shareText · shareUrl · shareImage · shareFile") {
-        // shareText
+        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                "Garnish",
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                "Small KMP system primitives. One focused module at a time.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+
+    HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = Color(0xFFD6CCB7))
+}
+
+@Composable
+private fun ShareDemo(garnishMarkBytes: ByteArray?) {
+    val shareKit = rememberShareKit()
+    var text by remember { mutableStateOf("Don't panic. Garnish can handle this share.") }
+    var url by remember { mutableStateOf("https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy") }
+
+    SectionCard(
+        title = "Share",
+        subtitle = "shareText · shareUrl · shareImage · shareFile",
+    ) {
         OutlinedTextField(
             value = text,
             onValueChange = { text = it },
@@ -85,13 +143,12 @@ private fun ShareDemo() {
             singleLine = true,
         )
         Button(
-            onClick = { shareKit.shareText(text, title = "Garnish Demo") },
+            onClick = { shareKit.shareText(text, title = "Mostly Harmless") },
             modifier = Modifier.fillMaxWidth(),
         ) { Text("shareText()") }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // shareUrl
         OutlinedTextField(
             value = url,
             onValueChange = { url = it },
@@ -100,67 +157,69 @@ private fun ShareDemo() {
             singleLine = true,
         )
         Button(
-            onClick = { shareKit.shareUrl(url, title = "Check this out") },
+            onClick = { shareKit.shareUrl(url, title = "Guide Link") },
             modifier = Modifier.fillMaxWidth(),
         ) { Text("shareUrl()") }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // shareImage
         Button(
             onClick = {
-                val pngBytes = ByteArray(64) { it.toByte() } // dummy image bytes
-                shareKit.shareImage(pngBytes, mimeType = "image/png")
+                garnishMarkBytes?.let { bytes ->
+                    shareKit.shareImage(bytes, mimeType = "image/png")
+                }
             },
+            enabled = garnishMarkBytes != null,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
-        ) { Text("shareImage(bytes, \"image/png\")") }
+        ) { Text("shareImage(garnish icon)") }
 
-        // shareFile
         Button(
             onClick = {
-                val csvBytes = "name,score\nAlice,100\nBob,95".encodeToByteArray()
-                shareKit.shareFile(csvBytes, "scores.csv", "text/csv")
+                val csvBytes = "name,answer\nArthur Dent,42\nFord Prefect,42".encodeToByteArray()
+                shareKit.shareFile(csvBytes, "answers.csv", "text/csv")
             },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
-        ) { Text("shareFile(bytes, \"scores.csv\", \"text/csv\")") }
+        ) { Text("shareFile(bytes, \"answers.csv\")") }
     }
 }
 
-// ──────────────────────────────────────────────
-// 2. HAPTIC — perform(HapticType)
-// ──────────────────────────────────────────────
 @Composable
 private fun HapticDemo() {
     val engine = rememberHapticEngine()
 
-    SectionCard("🎮 Haptic", "perform(type) — 7 haptic types") {
+    SectionCard(
+        title = "Haptic",
+        subtitle = "perform(type) — 7 haptic types",
+    ) {
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             HapticType.entries.forEach { type ->
-                FilledTonalButton(
-                    onClick = { engine.perform(type) },
-                ) { Text(type.name) }
+                FilledTonalButton(onClick = { engine.perform(type) }) {
+                    Text(type.name)
+                }
             }
         }
     }
 }
 
-// ──────────────────────────────────────────────
-// 3. TORCH — isAvailable, isOn, toggle()
-// ──────────────────────────────────────────────
 @Composable
 private fun TorchDemo() {
     val torch = rememberTorch()
     var torchError by remember { mutableStateOf<String?>(null) }
 
-    SectionCard("🔦 Torch", "isAvailable · isOn · toggle()") {
+    SectionCard(
+        title = "Torch",
+        subtitle = "isAvailable · isOn · toggle()",
+    ) {
         if (!torch.isAvailable) {
-            Text("Torch not available on this device/emulator",
-                color = MaterialTheme.colorScheme.error)
+            Text(
+                "Torch is unavailable on this device.",
+                color = MaterialTheme.colorScheme.error,
+            )
             return@SectionCard
         }
 
@@ -210,9 +269,6 @@ private fun TorchDemo() {
     }
 }
 
-// ──────────────────────────────────────────────
-// 4. SCREEN — brightness, keepScreenOn, lockOrientation, unlockOrientation
-// ──────────────────────────────────────────────
 @Composable
 private fun ScreenDemo() {
     val controller = rememberScreenController()
@@ -220,12 +276,15 @@ private fun ScreenDemo() {
     var keepOn by remember { mutableStateOf(false) }
     var lockedOrientation by remember { mutableStateOf<ScreenOrientation?>(null) }
 
-    // Lifecycle-aware effects
-    if (keepOn) { KeepScreenOn() }
+    if (keepOn) {
+        KeepScreenOn()
+    }
     lockedOrientation?.let { LockOrientation(it) }
 
-    SectionCard("🖥️ Screen", "brightness · keepScreenOn · lockOrientation · unlockOrientation") {
-        // brightness
+    SectionCard(
+        title = "Screen",
+        subtitle = "brightness · keepScreenOn · lockOrientation · unlockOrientation",
+    ) {
         Text("brightness: ${(brightness * 100).toInt() / 100f}")
         Slider(
             value = brightness,
@@ -238,7 +297,6 @@ private fun ScreenDemo() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // keepScreenOn
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -250,7 +308,6 @@ private fun ScreenDemo() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // lockOrientation / unlockOrientation
         Text("lockOrientation:", fontWeight = FontWeight.Medium)
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -271,23 +328,27 @@ private fun ScreenDemo() {
     }
 }
 
-// ──────────────────────────────────────────────
-// 5. BADGE — setBadgeCount, clearBadge
-// ──────────────────────────────────────────────
 @Composable
 private fun BadgeDemo() {
     val badge = rememberBadgeController()
     var count by remember { mutableIntStateOf(0) }
     var badgeError by remember { mutableStateOf<String?>(null) }
 
-    SectionCard("🔴 Badge", "setBadgeCount(count) · clearBadge()") {
+    SectionCard(
+        title = "Badge",
+        subtitle = "setBadgeCount(count) · clearBadge()",
+    ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            OutlinedButton(onClick = { count = (count - 1).coerceAtLeast(0) }) { Text("−") }
-            Text("$count", style = MaterialTheme.typography.headlineSmall, modifier = Modifier.padding(horizontal = 16.dp))
+            OutlinedButton(onClick = { count = (count - 1).coerceAtLeast(0) }) { Text("-") }
+            Text(
+                "$count",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
             OutlinedButton(onClick = { count++ }) { Text("+") }
         }
 
@@ -325,20 +386,19 @@ private fun BadgeDemo() {
     }
 }
 
-// ──────────────────────────────────────────────
-// 6. CLIPBOARD — copy, paste, hasContent + ClipContent types
-// ──────────────────────────────────────────────
 @Composable
-private fun ClipboardDemo() {
+private fun ClipboardDemo(garnishMarkBytes: ByteArray?) {
     val clipboard = rememberRichClipboard()
-    var clipText by remember { mutableStateOf("Copy me!") }
-    var htmlInput by remember { mutableStateOf("<b>Bold</b> text") }
-    var uriInput by remember { mutableStateOf("https://example.com") }
+    var clipText by remember { mutableStateOf("The answer is 42.") }
+    var htmlInput by remember { mutableStateOf("<b>Don't panic.</b> Bring a towel.") }
+    var uriInput by remember { mutableStateOf("https://github.com/szijpeter/garnish") }
     var pastedResult by remember { mutableStateOf("") }
     var hasContent by remember { mutableStateOf(false) }
 
-    SectionCard("📋 Clipboard", "copy(ClipContent) · paste() · hasContent()") {
-        // PlainText
+    SectionCard(
+        title = "Clipboard",
+        subtitle = "copy(ClipContent) · paste() · hasContent()",
+    ) {
         OutlinedTextField(
             value = clipText,
             onValueChange = { clipText = it },
@@ -349,11 +409,10 @@ private fun ClipboardDemo() {
         Button(
             onClick = { clipboard.copy(ClipContent.PlainText(clipText)) },
             modifier = Modifier.fillMaxWidth(),
-        ) { Text("copy(PlainText(…))") }
+        ) { Text("copy(PlainText)") }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Html
         OutlinedTextField(
             value = htmlInput,
             onValueChange = { htmlInput = it },
@@ -365,11 +424,10 @@ private fun ClipboardDemo() {
             onClick = { clipboard.copy(ClipContent.Html(htmlInput, plainText = "fallback")) },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
-        ) { Text("copy(Html(…, plainText))") }
+        ) { Text("copy(Html)") }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Uri
         OutlinedTextField(
             value = uriInput,
             onValueChange = { uriInput = it },
@@ -381,22 +439,23 @@ private fun ClipboardDemo() {
             onClick = { clipboard.copy(ClipContent.Uri(uriInput)) },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
-        ) { Text("copy(Uri(…))") }
+        ) { Text("copy(Uri)") }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Image
         Button(
             onClick = {
-                clipboard.copy(ClipContent.Image(ByteArray(32) { it.toByte() }, "image/png"))
+                garnishMarkBytes?.let { bytes ->
+                    clipboard.copy(ClipContent.Image(bytes, "image/png"))
+                }
             },
+            enabled = garnishMarkBytes != null,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.filledTonalButtonColors(),
-        ) { Text("copy(Image(bytes, \"image/png\"))") }
+        ) { Text("copy(Image: garnish icon)") }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // paste + hasContent
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -426,30 +485,30 @@ private fun ClipboardDemo() {
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             ) {
                 Text(
-                    text = "paste() → $pastedResult",
+                    text = "paste() -> $pastedResult",
                     modifier = Modifier.padding(12.dp),
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
         }
         Text(
-            "hasContent() → $hasContent",
+            "hasContent() -> $hasContent",
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
 
-// ──────────────────────────────────────────────
-// 7. REVIEW — requestReview()
-// ──────────────────────────────────────────────
 @Composable
 private fun ReviewDemo() {
     val review = rememberInAppReview()
     val scope = rememberCoroutineScope()
     var result by remember { mutableStateOf<ReviewResult?>(null) }
 
-    SectionCard("⭐ Review", "requestReview() → ReviewResult") {
+    SectionCard(
+        title = "Review",
+        subtitle = "requestReview() -> ReviewResult",
+    ) {
         Button(
             onClick = {
                 scope.launch {
@@ -473,9 +532,6 @@ private fun ReviewDemo() {
     }
 }
 
-// ──────────────────────────────────────────────
-// Shared UI components
-// ──────────────────────────────────────────────
 @Composable
 private fun SectionCard(
     title: String,
@@ -484,22 +540,77 @@ private fun SectionCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFD9CFBB)),
     ) {
-        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(
-                title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.primary,
-            )
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(RoundedCornerShape(6.dp))
+                        .background(Color(0xFFECE5D5)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    GarnishMark(modifier = Modifier.size(16.dp), tint = MaterialTheme.colorScheme.primary)
+                }
+                Text(
+                    title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
             Text(
                 subtitle,
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp), color = Color(0xFFE3DBC9))
             content()
         }
+    }
+}
+
+@Composable
+private fun GarnishMark(
+    modifier: Modifier,
+    tint: Color,
+) {
+    Canvas(modifier = modifier) {
+        val width = size.width
+        val height = size.height
+
+        val stem = Path().apply {
+            moveTo(width * 0.50f, height * 0.22f)
+            cubicTo(width * 0.45f, height * 0.32f, width * 0.43f, height * 0.42f, width * 0.43f, height * 0.52f)
+            cubicTo(width * 0.43f, height * 0.65f, width * 0.48f, height * 0.74f, width * 0.50f, height * 0.82f)
+            cubicTo(width * 0.52f, height * 0.74f, width * 0.57f, height * 0.65f, width * 0.57f, height * 0.52f)
+            cubicTo(width * 0.57f, height * 0.42f, width * 0.55f, height * 0.32f, width * 0.50f, height * 0.22f)
+            close()
+        }
+        val leftLeaf = Path().apply {
+            moveTo(width * 0.22f, height * 0.44f)
+            cubicTo(width * 0.35f, height * 0.35f, width * 0.48f, height * 0.34f, width * 0.58f, height * 0.43f)
+            cubicTo(width * 0.48f, height * 0.55f, width * 0.34f, height * 0.57f, width * 0.22f, height * 0.44f)
+            close()
+        }
+        val rightLeaf = Path().apply {
+            moveTo(width * 0.78f, height * 0.44f)
+            cubicTo(width * 0.65f, height * 0.35f, width * 0.52f, height * 0.34f, width * 0.42f, height * 0.43f)
+            cubicTo(width * 0.52f, height * 0.55f, width * 0.66f, height * 0.57f, width * 0.78f, height * 0.44f)
+            close()
+        }
+
+        drawPath(path = stem, color = tint)
+        drawPath(path = leftLeaf, color = tint)
+        drawPath(path = rightLeaf, color = tint)
     }
 }

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "enabledManagers": [
+    "gradle",
+    "github-actions"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "schedule": [
+    "before 5am on monday"
+  ],
+  "timezone": "Etc/UTC",
+  "prConcurrentLimit": 8,
+  "prHourlyLimit": 2,
+  "ignoreUnstable": true,
+  "packageRules": [
+    {
+      "description": "Group patch/minor updates to reduce PR noise.",
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "pin",
+        "digest"
+      ],
+      "groupName": "non-major dependencies",
+      "groupSlug": "non-major-dependencies"
+    },
+    {
+      "description": "Keep major updates separate for focused review.",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": "major dependencies",
+      "groupSlug": "major-dependencies"
+    },
+    {
+      "description": "Exception: Compose Material3 is currently published as prerelease for this stack, so keep it updated intentionally.",
+      "matchManagers": [
+        "gradle"
+      ],
+      "matchPackageNames": [
+        "org.jetbrains.compose.material3:material3"
+      ],
+      "ignoreUnstable": false
+    }
+  ]
+}

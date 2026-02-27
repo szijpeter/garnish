@@ -82,23 +82,10 @@ Publishing guide: [docs/MAVEN_CENTRAL.md](./docs/MAVEN_CENTRAL.md)
 
 ## Sample App
 
-- Compose sample UI covering all modules: [composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt)
-- Android host app: [androidApp](./androidApp)
-- iOS host app: [iosApp](./iosApp)
+Compose sample UI covering all modules: [composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt](./composeApp/src/commonMain/kotlin/dev/garnish/app/App.kt)
 
-<table>
-  <tr>
-    <td>
-      <video controls muted playsinline height="420">
-        <source src="https://raw.githubusercontent.com/szijpeter/garnish/main/assets/media/videos/android/garnish-share-image-android.mp4" type="video/mp4" />
-      </video>
-    </td>
-    <td>
-      <video controls muted playsinline height="420">
-        <source src="https://raw.githubusercontent.com/szijpeter/garnish/main/assets/media/videos/ios/garnish-share-image-ios.mp4" type="video/mp4" />
-      </video>
-    </td>
-  </tr>
-</table>
+| Android      | iOS          |
+|--------------|--------------|
+| <video src="https://github.com/user-attachments/assets/125a29d9-7dd6-414a-9cbf-677380ca3e11"/> | <video src="https://github.com/user-attachments/assets/4156c584-0f31-4fba-8264-6a6ced604bbc" height="420"/> |
 
 License: Apache-2.0. See [LICENSE](./LICENSE).

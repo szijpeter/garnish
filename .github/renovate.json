@@ -17,6 +17,9 @@
   "prConcurrentLimit": 8,
   "prHourlyLimit": 2,
   "ignoreUnstable": true,
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
   "packageRules": [
     {
       "description": "Group patch/minor updates to reduce PR noise.",

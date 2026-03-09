@@ -19,26 +19,5 @@
   "ignoreUnstable": true,
   "automerge": true,
   "automergeType": "pr",
-  "platformAutomerge": true,
-  "packageRules": [
-    {
-      "description": "Group patch/minor updates to reduce PR noise.",
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "pin",
-        "digest"
-      ],
-      "groupName": "non-major dependencies",
-      "groupSlug": "non-major-dependencies"
-    },
-    {
-      "description": "Keep major updates separate for focused review.",
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "groupName": "major dependencies",
-      "groupSlug": "major-dependencies"
-    }
-  ]
+  "platformAutomerge": true
 }

@@ -16,7 +16,7 @@ detekt = "1.23.8"
 dokka = "2.1.0"
 binaryCompatibilityValidator = "0.18.1"
 playReview = "2.0.2"
-kotlinxCoroutines = "1.10.2"
+kotlinxCoroutines = "1.11.0"
 vanniktechMavenPublish = "0.36.0"
 
 [libraries]
